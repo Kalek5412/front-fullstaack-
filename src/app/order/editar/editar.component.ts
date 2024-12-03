@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./editar.component.css'],
 })
 export class EditarComponent implements OnInit {
+  clients: any[] = []; 
   formOrder: FormGroup;
   id: number;
 
@@ -22,6 +23,7 @@ export class EditarComponent implements OnInit {
   ) {}
 
   ngOnInit(){
+    this.loadClients();
     this.initDataForm();
     this.id = this.activatedRoute.snapshot.params['id'];
     this.loadOrderData(this.id);
@@ -64,6 +66,17 @@ export class EditarComponent implements OnInit {
       error: (err) => {
         Swal.fire('Error', 'No se pudo crear la orden.', 'error');
         console.error(err);
+      },
+    });
+  }
+  private loadClients() {
+    this.orderService.getClients().subscribe({
+      next: (data) => {
+        this.clients = data; // Almacena los clientes obtenidos
+      },
+      error: (err) => {
+        console.error('Error al cargar clientes:', err);
+        Swal.fire('Error', 'No se pudieron cargar los clientes.', 'error');
       },
     });
   }

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { HomePageComponent } from './home-page/home-page.component';
-import { ComponentesModule } from "../componentes/componentes.module";
+
 import {HttpClientModule} from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
@@ -14,7 +14,7 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     HomeRoutingModule,
-    ComponentesModule,
+   
     HttpClientModule,
     FormsModule
 ],

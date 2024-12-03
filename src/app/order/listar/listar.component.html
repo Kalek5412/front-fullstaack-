@@ -13,9 +13,10 @@
                     <th scope="col">#id</th>
                     
                     <th scope="col">tipo documento</th>
-                    <th scope="col">documento (boleta | factura)</th>
+                    <th scope="col">numero documento</th>
                     <th scope="col">total</th>
-                    <th scope="col">dato de cliente</th>
+                    <th scope="col">nom y apell del cliente</th>
+                    <th scope="col">numro de documento</th>
                     <th scope="col">editar</th>
                     <th scope="col">borrar</th>
                 </tr>
@@ -28,6 +29,7 @@
                     <td>{{ord.doc_number}}</td>
                     <td>{{ord.total | currency:'PEN':'symbol-narrow':'1.2-2'}}</td>
                     <td>{{ord.Client.first_name}} {{ord.Client.last_name}}</td>
+                    <td>{{ord.Client.doc_number}}</td>
                     <td><button class="btn btn-outline-warning" [routerLink]="['/order/editar',ord.id]"><i class="fa-solid fa-pen-to-square"></i>ediatr</button>
                     </td>
                     <td><button class="btn btn-outline-danger" (click)="eliminarOrden(ord.id)" ><i class="fa-regular fa-trash-can"></i>eliminar</button>

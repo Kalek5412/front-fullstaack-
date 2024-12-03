@@ -1,10 +1,11 @@
 <form [formGroup]="formOrder" (ngSubmit)="updateCreate()">
+  
   <div class="mb-3">
-    <label for="client_id">Cliente ID</label>
+    <label for="client_id">Cliente</label>
     <select id="client_id" formControlName="client_id" class="form-control">
-      <option value="1">Cliente A</option>
-      <option value="2">Cliente B</option>
-      <option value="3">Cliente C</option>
+      <option *ngFor="let client of clients" [value]="client.id">
+        {{ client.first_name }} {{ client.last_name }}
+      </option>
     </select>
   </div>
 

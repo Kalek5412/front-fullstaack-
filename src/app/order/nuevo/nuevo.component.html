@@ -1,17 +1,25 @@
 <div class="card">
   <div class="card-header">
-    Crear Cliente
+    Crear orden
   </div>
   <div class="card-body">
     <form [formGroup]="formOrder" (ngSubmit)="postCreate()">
       <div class="mb-3">
-        <label for="estado">Cliente id</label>
+        <label for="client_id">Cliente</label>
+        <select id="client_id" formControlName="client_id" class="form-control">
+          <option *ngFor="let client of clients" [value]="client.id">
+            {{ client.first_name }} {{ client.last_name }}
+          </option>
+        </select>
+      </div>
+  <!--     <div class="mb-3">
+        <label for="estado">Cliente</label>
         <select id="estado" formControlName="client_id" class="form-control">
           <option value="1">cliente a </option>
           <option value="2">INACTIVO b</option>
           <option value="3">NO_ACTIVO c</option>
         </select>
-      </div>
+      </div> -->
 
       <div class="mb-3">
         <label for="total" class="form-label">Total</label>
@@ -19,7 +27,7 @@
       </div>
 
       <div class="mb-3">
-        <label for="estado">tipo cliente id</label>
+        <label for="estado">tipo doc orden</label>
         <select id="estado" formControlName="doc_type" class="form-control">
           <option value="1">boleta</option>
           <option value="2">factura</option>

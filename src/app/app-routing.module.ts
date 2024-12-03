@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { OrderModule } from './order/order.module';
+
 
 const routes: Routes = [
   {path:'order', loadChildren:()=>import(`./order/order.module`).then(m=>m.OrderModule)},
-  {path:'home', loadChildren:()=>import(`./home/home.module`).then(m=>m.HomeModule)},
+  {path:'order-detail', loadChildren:()=>import(`./order-detail/order-detail.module`).then(m=>m.OrderDetailModule)},
+  {path:'book', loadChildren:()=>import(`./book/book.module`).then(m=>m.BookModule)},
+  {path:'client', loadChildren:()=>import(`./client/client.module`).then(m=>m.ClientModule)},
+  {path:'', loadChildren:()=>import(`./home/home.module`).then(m=>m.HomeModule)},
 ];
 
 @NgModule({

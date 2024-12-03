@@ -11,13 +11,14 @@ import Swal from 'sweetalert2';
   styleUrls: ['./nuevo.component.css'],
 })
 export class NuevoComponent implements OnInit{
-
+  clients: any[] = []; 
   formOrder:FormGroup;
 
   constructor(private orderService: OrderService, private router: Router, private fb:FormBuilder) {}
 
   ngOnInit(){
     this.initDataForm();
+    this.loadClients();
   }
 
   private initDataForm(): void{
@@ -34,14 +35,14 @@ export class NuevoComponent implements OnInit{
       Swal.fire('Error', 'Por favor completa todos los campos correctamente.', 'error');
       return;
     }
-    const order: Order = this.formOrder.value; // Aquí usamos la interfaz como tipo
+    const order: Order = this.formOrder.value; 
     console.log('Datos enviados:', order);
 
     this.orderService.postOrden(order).subscribe({
       next: () => {
         Swal.fire('Éxito', 'Orden creada correctamente.', 'success');
         this.irListaOrder();
-        this.formOrder.reset(); // Reinicia el formulario
+        this.formOrder.reset(); 
       },
       error: (err) => {
         Swal.fire('Error', 'No se pudo crear la orden.', 'error');
@@ -53,5 +54,17 @@ export class NuevoComponent implements OnInit{
 
   irListaOrder(){
     this.router.navigate(['/order'])
+  }
+
+  private loadClients() {
+    this.orderService.getClients().subscribe({
+      next: (data) => {
+        this.clients = data; // Almacena los clientes obtenidos
+      },
+      error: (err) => {
+        console.error('Error al cargar clientes:', err);
+        Swal.fire('Error', 'No se pudieron cargar los clientes.', 'error');
+      },
+    });
   }
 }

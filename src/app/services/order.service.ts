@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 import { Order } from '../models/order';
+import { Client } from '../models/client';
 const base_url = environment.base_url;
 
 @Injectable({
@@ -16,6 +17,12 @@ export class OrderService {
     const url = `${base_url}/order`;
     return this.http.get<Order[]>(url) 
   }
+
+  getClients(): Observable<Client[]> {
+    const url = `${base_url}/client`;
+    return this.http.get<Client[]>(url) 
+  }
+
 
   postOrden(order:Order): Observable<any>{
     const url = `${base_url}/order`;
