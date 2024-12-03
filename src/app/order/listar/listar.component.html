@@ -1,0 +1,39 @@
+<div class="card text-center">
+    <div class="card-header">
+        <ul class="nav nav-pills card-header-pills">
+            <li class="nav-item">
+                <a class="nav-link active" routerLink="/order/nuevo">nuevo orden</a>
+            </li>
+        </ul>
+    </div>
+    <div class="card-body">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">#id</th>
+                    
+                    <th scope="col">tipo documento</th>
+                    <th scope="col">documento (boleta | factura)</th>
+                    <th scope="col">total</th>
+                    <th scope="col">dato de cliente</th>
+                    <th scope="col">editar</th>
+                    <th scope="col">borrar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let ord of  orders  ; index as i">
+                    <td>{{i+1}}</td>
+                    
+                    <td>{{ord.doc_type === 1 ?'BOLETA':'FACTURA'}}</td>
+                    <td>{{ord.doc_number}}</td>
+                    <td>{{ord.total | currency:'PEN':'symbol-narrow':'1.2-2'}}</td>
+                    <td>{{ord.Client.first_name}} {{ord.Client.last_name}}</td>
+                    <td><button class="btn btn-outline-warning" [routerLink]="['/order/editar',ord.id]"><i class="fa-solid fa-pen-to-square"></i>ediatr</button>
+                    </td>
+                    <td><button class="btn btn-outline-danger" (click)="eliminarOrden(ord.id)" ><i class="fa-regular fa-trash-can"></i>eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

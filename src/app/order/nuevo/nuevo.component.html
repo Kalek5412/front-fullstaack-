@@ -1,0 +1,42 @@
+<div class="card">
+  <div class="card-header">
+    Crear Cliente
+  </div>
+  <div class="card-body">
+    <form [formGroup]="formOrder" (ngSubmit)="postCreate()">
+      <div class="mb-3">
+        <label for="estado">Cliente id</label>
+        <select id="estado" formControlName="client_id" class="form-control">
+          <option value="1">cliente a </option>
+          <option value="2">INACTIVO b</option>
+          <option value="3">NO_ACTIVO c</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="total" class="form-label">Total</label>
+        <input id="total" class="form-control" formControlName="total" type="text" />
+      </div>
+
+      <div class="mb-3">
+        <label for="estado">tipo cliente id</label>
+        <select id="estado" formControlName="doc_type" class="form-control">
+          <option value="1">boleta</option>
+          <option value="2">factura</option>
+       
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="doc_number" class="form-label">Número de Documento</label>
+        <input id="doc_number" class="form-control" formControlName="doc_number" type="text" />
+      </div>
+
+      <div class="mb-3">
+        <div class="d-flex gap-2">
+          <button type="submit" class="btn btn-primary" [disabled]="formOrder.invalid">Enviar</button>
+          <button type="button" class="btn btn-secondary" routerLink="/order">Volver</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<form [formGroup]="formOrder" (ngSubmit)="updateCreate()">
+  <div class="mb-3">
+    <label for="client_id">Cliente ID</label>
+    <select id="client_id" formControlName="client_id" class="form-control">
+      <option value="1">Cliente A</option>
+      <option value="2">Cliente B</option>
+      <option value="3">Cliente C</option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label for="total" class="form-label">Total</label>
+    <input id="total" class="form-control" formControlName="total" type="text" />
+  </div>
+
+  <div class="mb-3">
+    <label for="doc_type">Tipo Documento</label>
+    <select id="doc_type" formControlName="doc_type" class="form-control">
+      <option value="1">Boleta</option>
+      <option value="2">Factura</option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label for="doc_number" class="form-label">Número de Documento</label>
+    <input id="doc_number" class="form-control" formControlName="doc_number" type="text" />
+  </div>
+
+  <div class="mb-3">
+    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+    <button type="button" class="btn btn-secondary" routerLink="/order">Volver</button>
+  </div>
+</form>

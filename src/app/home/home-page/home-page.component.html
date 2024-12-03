@@ -1,0 +1,124 @@
+<main>
+  <section class="portfoliogallery gallery">
+
+    <div class="headings">
+      <h2>Carrito e libros</h2>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" (input)="onSearch($event)" type="search" placeholder="INGRESE NOMBRE O ISBN"
+          aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+
+
+    <div class="galleryitems">
+      <div *ngFor="let book of books ;index as i" class="item">
+        <div class="itemcontent">
+          <div class="overlay">
+          
+            <div class="text">
+              <h3>ISBN-{{book.isbn}}</h3>
+              <h3>NOMBRE-{{book.name}}</h3>
+              <h3>STOCK-{{book.stock}}</h3>
+              <h3>PRICE-{{book.current_price | number: '1.2-2'}}</h3>
+              <a href="#" class="livelink" (click)="agregarBook(book)">
+                <h3 style="text-align: center;"><i class="bi bi-minecart" style="font-size: 24px;"></i></h3>
+              </a>
+            </div>
+          </div>
+          <img [src]="'./assets/images/'+book.id+'.jpg'" alt=""  (error)="setDefaultImage($event)" />
+        </div>
+      </div>
+    </div>
+    <!--galleryitems-->
+
+
+    <div class="pagination">
+      <a href="#" class="active">1</a>
+      <a href="#">2</a>
+      <a href="#">3</a>
+      <a href="#">4</a>
+      <a href="#">5</a>
+    </div>
+    <!--pagination-->
+
+
+
+
+  </section>
+  <header>
+    <div class="branding" style="border-bottom: 1px solid #000;">
+      <h1>Carrito</h1>
+      <div style="display: flex; justify-content: flex-end; gap: 100px;">
+        <div>
+          <h3><i class="bi bi-qr-code"></i></h3>
+        </div>
+        <div>
+          <h3><i class="bi bi-columns"></i></h3>
+        </div>
+        <div>
+          <h3><i class="bi bi-trash"></i></h3>
+        </div>
+      </div>
+      <div>
+        <table>
+          <thead>
+            <tr>
+              <th style="padding: 10px;" >UNIDAD</th>
+              <th style="padding: 10px;">TITULO</th>
+              <th style="padding: 10px;">PRECIO</th>
+              <th style="padding: 10px;">COSTO</th>
+              <th style="padding: 10px;">ACCION</th>
+            </tr>
+
+          </thead>
+          <tbody>
+
+            <tr *ngFor="let item of listCarrito; index as i ">
+              <td style="padding: 5px;">{{item.cantidad}}</td>
+           
+              <td style="padding: 5px;">{{item.book.name}}</td>
+        
+              <td style="padding: 5px;">{{item.book.current_price}}</td>
+          
+              <td style="padding: 5px;">{{item.book.current_price*item.cantidad | number: '1.2-2'}}</td>
+              <td style="padding: 5px;">
+                <button class="btn btn-danger btn-sm" (click)="eliminarItem(i)">
+                <i class="bi bi-trash"></i>
+              </button>
+            </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h3>Total: ${{ totalPagar() | number: '1.2-2'}}</h3>
+      </div>
+  
+    </div>
+    
+
+  </header>
+
+
+  <footer>
+    <div>
+      <button type="submit" class="btn btn-primary">EFECTIVO</button>
+    </div>
+    
+    <div>
+      <button type="submit" class="btn btn-success">TRANSF</button>
+    </div>
+
+    <div class="social">
+      <a href="#"><i class="bi bi-qr-code"></i></a>
+      <a href="#"><i class="fa-brands fa-instagram"></i></a>
+      <a href="#"><i class="fa-brands fa-twitter"></i></a>
+    </div>
+
+
+  </footer>
+
+
+</main>
